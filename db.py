@@ -3,7 +3,7 @@ import psycopg2
 def get_connection():
     '''
     подключение к Базе Данных
-    connection.autocomit -  выключает режим транзакций: каждый отдельный cur.execute() сразу фиксируется в базе.
+    connection.autocomit -   каждый отдельный cur.execute() сразу фиксируется в базе.
     '''
     try:
         connection = psycopg2.connect(dbname='hotel_db', user='postgres', password='849562', host='localhost')
