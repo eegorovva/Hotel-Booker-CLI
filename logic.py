@@ -1,12 +1,12 @@
 from db import *
 
-def add_room(id, type, price): #функция для админа
+def add_room(type, price): #функция для админа
     connection = get_connection()
 
     with connection.cursor() as curs:
         curs.execute(
-            "INSERT INTO rooms(room_id, room_type, price) VALUES (%s, %s, %s)",
-            (id, type, price)
+            "INSERT INTO rooms(room_type, price) VALUES (%s, %s)",
+            (type, price)
         )
 
     connection.close()
@@ -48,10 +48,37 @@ def show_free_rooms(date_from, date_to):
 
         return free_rooms
 
+def add_guest(first_name, last_name, phone):
+    connection = get_connection()
 
-rooms = show_free_rooms("10.12.2025","12.12.2025")
+    with connection.cursor() as curs:
+        curs.execute(
+            "INSERT INTO guests( first_name, last_name, phone) VALUES (%s, %s, %s) "
+            "RETURNING guest_id;",
+            (first_name, last_name, phone)
+        )
 
-for room_id, room_type, price in rooms:
-    text = f"Room number: {room_id}  | type: {room_type}  |  price: {price} $"
-    print(len(text) * "_")
-    print(text)
+        guest = curs.fetchone()[0]
+
+        connection.close()
+
+        return guest
+
+
+def create_booking(room_id, guest_id, date_from, date_to):
+    connection = get_connection()
+
+    with connection.cursor() as curs:
+        curs.execute(
+            "INSERT INTO bookings(room_id, guest, date_from, date_to) VALUES (%s, %s, %s, %s)"
+            "RETURNING booking_id;",
+            (room_id, guest_id, date_from, date_to)
+        )
+
+        booking = curs.fetchone()[0]
+
+    connection.close()
+
+    return booking
+
+
