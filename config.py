@@ -1,0 +1,1 @@
+DSN = "postgresql://postgres:849562@localhost:5432/hotel_db"
