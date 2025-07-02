@@ -47,6 +47,7 @@ def booking():
     try:
         booking_id = create_booking(room, guest, date_from, date_to)
         print(f"The reservation has been confirmed! №{booking_id}")
+
     except RaiseException:
         print("\nRoom already booked for this dates")
 
@@ -75,9 +76,11 @@ def main_menu():
 
         elif choice == "2":
             booking()
+
         elif choice == "0":
             print("Bye!")
             break
+
         else:
             print("Try again, please")
 

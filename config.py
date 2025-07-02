@@ -1,1 +1,1 @@
-DSN = "postgresql://postgres:849562@localhost:5432/hotel_db"
+DSN = "postgresql://postgres:PASSWORD@localhost:5432/hotel_db"

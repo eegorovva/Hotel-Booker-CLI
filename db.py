@@ -6,7 +6,7 @@ def get_connection():
     connection.autocomit -   каждый отдельный cur.execute() сразу фиксируется в базе.
     '''
     try:
-        connection = psycopg2.connect(dbname='hotel_db', user='postgres', password='849562', host='localhost')
+        connection = psycopg2.connect(dbname='hotel_db', user='postgres', password='PASS', host='localhost')
 
         connection.autocommit = True
         return connection
