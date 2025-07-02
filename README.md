@@ -1,6 +1,6 @@
 # Hotel-Booker CLI
 
-Консольная утилита на **Python 3 + PostgreSQL** для бронирования отельных номеров.
+Консольная утилита на **Python + PostgreSQL** для бронирования номеров в отели.
 
 (В config.py необходимо прописать свою строку подключения, например
 DSN = "postgresql://postgres:<password>@localhost:5432/hotel_db")
@@ -16,7 +16,8 @@ DSN = "postgresql://postgres:<password>@localhost:5432/hotel_db")
 2. Book a room
 0. Exit
 
-Жмём 1
+# 1.View available rooms
+
 
 Specify arrival and departure dates. Example (YYYY-MM-DD)
 >>> 2025-08-01
@@ -35,9 +36,9 @@ Room number: 201  | type: double  |  price: 60 $
 
 В конце необходимо ввести 0, чтобы вернуться в меню.
 
-**Забронировать номер**
+# 2.Book a room
 
-Жмём 2
+
 
 Enter rooms number:
 >>> 1            
@@ -66,7 +67,7 @@ create_booking()
 → если даты не пересекаются, БД возвращает booking_id, и скрипт пишет:
 
 The reservation has been confirmed!
-Если даты пересекаются, триггер в БД кидает RAISE EXCEPTION;
+Если даты пересекаются, триггер в БД кидает RAISE EXCEPTION,
 код ловит RaiseException и выводит:
 
 Room already booked for this dates
